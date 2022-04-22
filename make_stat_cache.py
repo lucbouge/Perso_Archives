@@ -24,7 +24,9 @@ def main():
 
 
 def process(cache):
-    for (i, (dirpath, dirnames, filenames)) in enumerate(os.walk("2017-05-15")):
+    for (i, (dirpath, dirnames, filenames)) in enumerate(
+        os.walk("Backup_1_2019_1TB/2017-05-15")
+    ):
         if i % 1 == 0:
             print(os.path.join(ROOTNAME, dirpath), i)
         for filename in filenames:
