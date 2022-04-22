@@ -31,7 +31,7 @@ def parse():
 
 def main():
     os.chdir(ROOTNAME)
-    with dc.Cache(cachename) as cache:
+    with dc.Cache(cachename, size_limit=int(400e9)) as cache:
         process(cache)
 
 
