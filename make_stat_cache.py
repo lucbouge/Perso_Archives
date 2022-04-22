@@ -33,6 +33,7 @@ def parse():
 
 def main():
     os.chdir(ROOTNAME)
+    print(f"Cache: {cachepath}")
     with dc.Cache(cachepath, size_limit=int(400e9)) as cache:
         process(cache)
 
