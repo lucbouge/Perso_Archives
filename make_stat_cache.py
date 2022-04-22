@@ -8,7 +8,9 @@ import argparse
 
 ROOTNAME = "/nfs/nas4.irisa.fr/temp_transfert/bouge/Sauvegarde_OVH_2022-04-21/"
 
-cachename = "Cache/stat.cache"
+cachepath = (
+    "/nfs/nas4.irisa.fr/temp_transfert/bouge/Sauvegarde_OVH_2022-04-21/Cache/stat.cache"
+)
 
 
 class File(NamedTuple):
@@ -31,7 +33,7 @@ def parse():
 
 def main():
     os.chdir(ROOTNAME)
-    with dc.Cache(cachename, size_limit=int(400e9)) as cache:
+    with dc.Cache(cachepath, size_limit=int(400e9)) as cache:
         process(cache)
 
 
