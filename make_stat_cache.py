@@ -5,7 +5,7 @@ import datetime
 import diskcache as dc
 
 
-ROOTNAME = "/Volumes/Backup_1_2019_1TB/"
+ROOTNAME = "/nfs/nas4.irisa.fr/temp_transfert/bouge/Sauvegarde_OVH_2022-04-21/"
 
 cachename = "Cache/stat.cache"
 
@@ -24,7 +24,7 @@ def main():
 
 
 def process(cache):
-    for (i, (dirpath, dirnames, filenames)) in enumerate(os.walk(".")):
+    for (i, (dirpath, dirnames, filenames)) in enumerate(os.walk("2017-05-15")):
         if i % 1 == 0:
             print(os.path.join(ROOTNAME, dirpath), i)
         for filename in filenames:
