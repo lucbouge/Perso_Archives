@@ -62,6 +62,7 @@ def process_delete(*, cache=None, root=None):
     assert root is not None
     key_to_path_dict = dict()
     for file in cache:
+        print(file)
         name = file.name
         size = file.size
         mod_date = file.mod_date
