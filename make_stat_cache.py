@@ -61,7 +61,7 @@ def process_delete(*, cache=None, root=None):
         size = file.size
         mod_date = file.mod_date
         path = file.path
-        if "photo" in file.lower():
+        if "photo" in path.lower():
             continue
         key = (name, size, mod_date)
         if key not in key_to_file_dict:
