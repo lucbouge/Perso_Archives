@@ -8,9 +8,7 @@ import argparse
 
 ROOTNAME = "/nfs/nas4.irisa.fr/temp_transfert/bouge/Sauvegarde_OVH_2022-04-21/"
 
-cachepath = (
-    "/nfs/nas4.irisa.fr/temp_transfert/bouge/Sauvegarde_OVH_2022-04-21/Cache/stat.cache"
-)
+cachepath = "/udd/bouge/Perso_Archives/Cache/make_stat_cache.dc"
 
 
 class File(NamedTuple):
