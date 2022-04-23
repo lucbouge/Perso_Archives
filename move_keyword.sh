@@ -8,5 +8,5 @@ KEY="Perso"
 
 mkdir -p "${ROOT}/Groups/${KEY}"
 
-find "${ROOT}" -type d -iname "${KEY}" -print0 \
-    | xargs -0 sh ./move.sh
+find "${ROOT}" -type d -name "${KEY}" -print0 \
+    | xargs -0 -I % sh ./move.sh %
