@@ -17,6 +17,7 @@ export ROOT KEY
 
 mkdir -p "${ROOT}/Groups/${KEY}"
 
+set -x
 find "${ROOT}"/Backup* "${ROOT}"/LACIE* "${ROOT}"/LaCie* "${ROOT}"/WD* \
      -type d -name "*${KEY}*" -print0 -prune \
     | xargs -0 -I % sh ./move.sh %
