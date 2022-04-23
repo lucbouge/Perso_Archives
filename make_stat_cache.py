@@ -75,12 +75,23 @@ def process_delete(*, cache=None, root=None):
         assert old_file.name == file.name
         assert old_file.size == file.size
         assert old_file.mod_date == file.mod_date
+        path = file.path
+        old_path = old_file.path
         print(
-            f"""
-{file.path} 
-{old_file.path}
-"""
+            f"""=================
+{path} 
+{old_path}"""
         )
+        if not (os.path.exists(path) and os.path.exists(old_path)):
+            continue
+        if len(path) >= len(old_path):
+            print(f"Removing new {path}")
+            os.remove(path)
+            continue
+        assert len(old_path) > len(path)
+        key_to_file_dict[key] = file
+        print(f"Removing old {old_path}")
+        os.remove(old_path)
 
 
 ################################################################################
