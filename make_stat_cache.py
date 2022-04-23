@@ -23,7 +23,12 @@ def parse():
     parser.add_argument(
         "--root",
         type=str,
-        dest="initial_dirname",
+        dest="root",
+    )
+    parser.add_argument(
+        "--action",
+        type=str,
+        dest="action",
     )
     args = parser.parse_args()
     return args
@@ -38,9 +43,44 @@ def main():
 
 def process(cache):
     args = parse()
-    initial_dirname = args.initial_dirname
-    print(f"Starting from {initial_dirname}\n\n")
-    for (i, (dirpath, dirnames, filenames)) in enumerate(os.walk(initial_dirname)):
+    root = args.root
+    print(f"Starting from {root}\n\n")
+    action = args.action
+    assert action in ("scan", "delete")
+    if action == "scan":
+        process_scan(cache=cache, root=root)
+    if action == "delete":
+        process_delete(cache=cache, root=root)
+    assert AssertionError("Unexpected action")
+
+
+################################################################################
+
+
+def process_delete(*, cache=None, root=None):
+    assert cache is not None
+    assert root is not None
+    key_to_path_dict = dict()
+    for file in cache:
+        name = file.name
+        size = file.size
+        mod_date = file.mod_date
+        path = file.path
+        key = (name, size, mod_date)
+        if key not in key_to_path_dict:
+            key_to_path_dict[key] = path
+            continue
+        old_path = key_to_path_dict[key]
+        print(f"{path} ==> {old_path}")
+
+
+################################################################################
+
+
+def process_scan(*, cache=None, root=None):
+    assert cache is not None
+    assert root is not None
+    for (i, (dirpath, dirnames, filenames)) in enumerate(os.walk(root)):
         if i % 100 == 0:
             print(os.path.join(ROOTNAME, dirpath), i)
         for filename in filenames:
