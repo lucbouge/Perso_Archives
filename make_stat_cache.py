@@ -78,7 +78,10 @@ def process_delete(*, cache=None, root=None):
 {path} 
 {old_path}"""
         )
-        if not (os.path.exists(path) and os.path.exists(old_path)):
+        if not os.path.exists(old_path):
+            key_to_file_dict[key] = file
+            continue
+        if not os.path.exists(path):
             continue
         if len(path) >= len(old_path):
             print(f"Removing new {path}")
