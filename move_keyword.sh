@@ -4,6 +4,14 @@ set -u
 
 ROOT="/nfs/nas4.irisa.fr/temp_transfert/bouge/Sauvegarde_OVH_2022-04-21"
 KEY="Perso"
+KEY="$1"
+
+if test -z "${KEY}"
+then
+    echo "Please provide a key"
+    exit
+fi
+
 
 export ROOT KEY 
 
