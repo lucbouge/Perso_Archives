@@ -20,15 +20,9 @@ class File(NamedTuple):
 
 def parse():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--root", type=str, dest="root", required=True)
     parser.add_argument(
-        "--root",
-        type=str,
-        dest="root",
-    )
-    parser.add_argument(
-        "--action",
-        type=str,
-        dest="action",
+        "--action", type=str, dest="action", choices=["scan", "delete"], required=True
     )
     args = parser.parse_args()
     return args
@@ -67,6 +61,8 @@ def process_delete(*, cache=None, root=None):
         size = file.size
         mod_date = file.mod_date
         path = file.path
+        if "photo" in file.lower():
+            continue
         key = (name, size, mod_date)
         if key not in key_to_file_dict:
             key_to_file_dict[key] = file
