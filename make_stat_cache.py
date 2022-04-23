@@ -60,19 +60,19 @@ def process(cache):
 def process_delete(*, cache=None, root=None):
     assert cache is not None
     assert root is not None
-    key_to_path_dict = dict()
-    for file in cache:
-        print(file)
+    key_to_file_dict = dict()
+    for path in cache:
+        file = cache[path]
         name = file.name
         size = file.size
         mod_date = file.mod_date
         path = file.path
         key = (name, size, mod_date)
-        if key not in key_to_path_dict:
-            key_to_path_dict[key] = path
+        if key not in key_to_file_dict:
+            key_to_file_dict[key] = file
             continue
-        old_path = key_to_path_dict[key]
-        print(f"{path} ==> {old_path}")
+        old_file = key_to_file_dict[key]
+        print(f"{file.path} ==> {old_file.path}")
 
 
 ################################################################################
