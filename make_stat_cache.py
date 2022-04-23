@@ -72,6 +72,9 @@ def process_delete(*, cache=None, root=None):
             key_to_file_dict[key] = file
             continue
         old_file = key_to_file_dict[key]
+        assert old_file.name == file.name
+        assert old_file.size == file.size
+        assert old_file.mod_time == file.mod_time
         print(f"{file.path} ==> {old_file.path}")
 
 
